@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oohpack-bin
+_pkgname=oohpack
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Encodes and decodes HTTP/2 HPACK header compression tables for debugging."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oohpack"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oohpack')
+conflicts=('oohpack')
+source_x86_64=("${url}/releases/download/v${pkgver}/oohpack-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oohpack-linux-x86_64" "${pkgdir}/usr/bin/oohpack"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oohpack-uninstall"
+}
